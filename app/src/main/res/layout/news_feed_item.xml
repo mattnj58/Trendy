@@ -3,6 +3,7 @@
     style="@style/Card.Clickable"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/news_feed_container"
     android:layout_margin="@dimen/activity_horizontal_margin">
 
     <LinearLayout
@@ -11,19 +12,21 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="@+id/news_feed_image"
+            android:id="@+id/news_feed_image"
+            android:layout_width="match_parent"
             android:layout_height="125dp"
-            android:src="@drawable/ic_library_books_black_24dp"/>
+            android:src="@drawable/ic_library_books_black_24dp" />
 
         <TextView
-            android:id="@+id/news_feed_title_text_view" style="@style/TextAppearance.AppCompat.Title"
+            android:id="@+id/news_feed_title_text_view"
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/standard_padding"
             android:layout_marginRight="@dimen/standard_padding"
             android:layout_marginTop="24dp"
             android:text="@string/default_news_title"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/news_feed_author_text_view"
@@ -34,7 +37,7 @@
             android:layout_marginLeft="@dimen/standard_padding"
             android:layout_marginRight="@dimen/standard_padding"
             android:layout_marginTop="@dimen/standard_padding_small"
-            android:text="Matt Wong"
+            android:text="@string/default_news_author"
             android:textSize="14sp" />
 
     </LinearLayout>
