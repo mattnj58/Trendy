@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 /**
  * The global application class. Used mainly get static access to the application {@link Context}
