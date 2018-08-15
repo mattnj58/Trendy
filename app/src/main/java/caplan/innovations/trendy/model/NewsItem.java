@@ -1,9 +1,5 @@
 package caplan.innovations.trendy.model;
 
-/**
- * Created by Matt Wong on 8/12/2018.
- */
-
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -11,7 +7,13 @@ import android.support.annotation.Nullable;
 import caplan.innovations.trendy.R;
 import caplan.innovations.trendy.application.TrendyApplication;
 
-public class NewsItem implements Parcelable{
+/**
+ * Created by Corey on 1/20/2017.
+ * Project: Trendy
+ * <p></p>
+ * Purpose of Class: To represent a simple news item in our app.
+ */
+public class NewsItem implements Parcelable {
 
     private final String mTitle;
     @Nullable
@@ -20,36 +22,37 @@ public class NewsItem implements Parcelable{
     private final String mDescription;
     private final String mImageUrl;
 
-    public static NewsItem getDummy(){
-        String title = "The Lastest Trends";
-        String author = "Matt";
+    public static NewsItem getDummy() {
+        String title = "Android Course 101";
+        String author = "Corey";
         String urlToArticle = "https://google.com";
         String description = TrendyApplication.context().getString(R.string.default_news_description);
         return new NewsItem(title, author, urlToArticle, description, null);
-
     }
 
-    public NewsItem(String title, @Nullable String author, String urlToArticle, String description, String imageUrl){
-        mTitle=title;
-        mAuthor=author;
-        mUrlToArticle=urlToArticle;
-        mDescription=description;
-        mImageUrl=imageUrl;
+    public NewsItem(String title, @Nullable String author, String urlToArticle, String description,
+                    String imageUrl) {
+        mTitle = title;
+        mAuthor = author;
+        mUrlToArticle = urlToArticle;
+        mDescription = description;
+        mImageUrl = imageUrl;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return mTitle;
     }
 
-    public String getAuthor(){
+    @Nullable
+    public String getAuthor() {
         return mAuthor;
     }
 
-    public String getUrlToArticle(){
+    public String getUrlToArticle() {
         return mUrlToArticle;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return mDescription;
     }
 
@@ -57,12 +60,15 @@ public class NewsItem implements Parcelable{
         return mImageUrl;
     }
 
-    public int describeContents(){
+    @Override
+    public int describeContents() {
         return 0;
     }
 
-    public void writeToParcel(Parcel dest, int flags){
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mTitle);
+
         dest.writeByte((byte) (mAuthor != null ? 0x01 : 0x00));
         if (mAuthor != null) {
             dest.writeString(mAuthor);
@@ -96,4 +102,5 @@ public class NewsItem implements Parcelable{
             return new NewsItem[size];
         }
     };
+
 }

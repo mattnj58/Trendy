@@ -1,4 +1,4 @@
-package caplan.innovations.trendy.recycler;
+package caplan.innovations.trendy.recyclers;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,18 +10,22 @@ import java.util.ArrayList;
 
 import caplan.innovations.trendy.R;
 import caplan.innovations.trendy.model.NewsItem;
-import caplan.innovations.trendy.recycler.NewsViewHolder.OnNewsActionListenerInternal;
-
+import caplan.innovations.trendy.recyclers.NewsViewHolder.OnNewsActionListenerInternal;
 
 /**
- * Created by Matt Wong on 8/12/2018.
+ * Created by Corey Caplan on 1/20/17.
+ * Project: Trendy
+ * <p></p>
+ * Purpose of Class: To perform all data-binding for the main news item {@link NewsItem}
  */
+public class NewsItemRecyclerAdapter extends RecyclerView.Adapter<NewsViewHolder> implements
+        OnNewsActionListenerInternal {
 
-public class NewsItemRecyclerAdapter extends RecyclerView.Adapter<NewsViewHolder> implements OnNewsActionListenerInternal {
     /**
      * A listener used to transfer actions from this adapter to the activity.
      */
     public interface OnNewsItemActionListener {
+
         /**
          * Called when a news item is clicked
          *
@@ -29,9 +33,9 @@ public class NewsItemRecyclerAdapter extends RecyclerView.Adapter<NewsViewHolder
          */
         void onNewsItemClick(NewsItem item);
     }
+
     @NonNull
     private ArrayList<NewsItem> mData;
-
     private OnNewsItemActionListener mListener;
 
     public NewsItemRecyclerAdapter(@NonNull ArrayList<NewsItem> newsItems,
@@ -39,6 +43,7 @@ public class NewsItemRecyclerAdapter extends RecyclerView.Adapter<NewsViewHolder
         mData = newsItems;
         mListener = listener;
     }
+
     @Override
     public NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Get an instance of LayoutInflater to inflate our view from XML
@@ -46,6 +51,7 @@ public class NewsItemRecyclerAdapter extends RecyclerView.Adapter<NewsViewHolder
         View newsView = inflater.inflate(R.layout.news_feed_item, parent, false);
         return new NewsViewHolder(newsView, this);
     }
+
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
         NewsItem newsItem = mData.get(position);

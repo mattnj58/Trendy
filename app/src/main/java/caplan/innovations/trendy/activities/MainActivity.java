@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import caplan.innovations.trendy.R;
 import caplan.innovations.trendy.model.NewsItem;
-import caplan.innovations.trendy.recycler.NewsItemRecyclerAdapter;
-import caplan.innovations.trendy.recycler.NewsItemRecyclerAdapter.OnNewsItemActionListener;
+import caplan.innovations.trendy.recyclers.NewsItemRecyclerAdapter;
+import caplan.innovations.trendy.recyclers.NewsItemRecyclerAdapter.OnNewsItemActionListener;
 
 /**
  * The main activity that is the entry-point for our app.
@@ -28,18 +28,20 @@ public class MainActivity extends BaseActivity implements OnNewsItemActionListen
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        // Keep in mind, BaseActivity calls ButterKnife#bind for us. However, in later situations
+        // we will have to do it manually, like if we're working with a RecyclerView.
 
         ArrayList<NewsItem> items = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             items.add(NewsItem.getDummy());
         }
-        /** Pass "this" since Activity is an instance of Context */
+
+        /* Pass "this" since Activity is an instance of Context */
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        /** Pass "this" since Activity implements OnNewsItemActionListener */
+        /* Pass "this" since Activity implements OnNewsItemActionListener */
         mAdapter = new NewsItemRecyclerAdapter(items, this);
         mRecyclerView.setAdapter(mAdapter);
     }

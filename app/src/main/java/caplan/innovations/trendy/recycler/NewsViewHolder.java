@@ -1,4 +1,4 @@
-package caplan.innovations.trendy.recycler;
+package caplan.innovations.trendy.recyclers;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,15 +12,26 @@ import caplan.innovations.trendy.R;
 import caplan.innovations.trendy.model.NewsItem;
 
 /**
- * Created by Matt Wong on 8/12/2018.
+ * Created by Corey Caplan on 1/20/17.
+ * Project: Trendy
+ * <p></p>
+ * Purpose of Class: To represent a single item of the news, in our news feed
  */
+class NewsViewHolder extends RecyclerView.ViewHolder {
 
-public class NewsViewHolder extends RecyclerView.ViewHolder {
+    /**
+     * A listener used to pass click events from this holder to the adapter
+     * <p></p>
+     * This interface is useful for passing actions to many different adapters.
+     */
+    interface OnNewsActionListenerInternal {
 
-    interface OnNewsActionListenerInternal{
-
+        /**
+         * Called when the base view holder is clicked
+         *
+         * @param position The position at which the click occurred.
+         */
         void onNewsClickInternal(int position);
-
     }
 
     @BindView(R.id.news_feed_image)
@@ -39,6 +50,7 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
         mListenerInternal = listenerInternal;
     }
+
     void bind(NewsItem newsItem) {
         mTitleTextView.setText(newsItem.getTitle());
         mAuthorTextView.setText(newsItem.getAuthor());
